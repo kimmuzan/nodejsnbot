@@ -33,16 +33,16 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == 'ping') {
-    return message.reply('아직설정안해둠 ㅋㅋ');
+    return message.reply('pong');
   }
+});
 
 client.on('message', (message) => {
-    if(message.author.bot) return;
-  
-    if(message.content == '사뇨야 안뇽') {
-      return message.reply('안영 난 사뇨양!!');
-    }
-});
+  if(message.author.bot) return;
+
+  if(message.content == 'ping') {
+    return message.reply('아직설정안해둠 ㅋㅋ');
+  }
 
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
