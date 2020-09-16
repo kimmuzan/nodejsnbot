@@ -35,7 +35,15 @@ client.on('message', (message) => {
   if(message.content == 'ping') {
     return message.reply('아직설정안해둠 ㅋㅋ');
   }
+
+client.on('message', (message) => {
+    if(message.author.bot) return;
   
+    if(message.content == '사뇨야 안뇽') {
+      return message.reply('안영 난 사뇨양!!');
+    }
+});
+
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
     let embed = new Discord.RichEmbed()
@@ -60,6 +68,7 @@ client.on('message', (message) => {
       {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움(오류남) 고치는중'},
+      {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'}
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
@@ -174,7 +183,6 @@ client.on('message', (message) => {
     }
   }
 });
-
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
