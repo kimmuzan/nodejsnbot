@@ -29,13 +29,6 @@ client.on("guildMemberRemove", (member) => {
   byeChannel.send(`<@${deleteUser.id}> ${byeChannelComment}\n`);
 });
 
-client.on('message', (message) => {
-  if(message.author.bot) return;
-
-  if(message.content == 'ping') {
-    return message.reply('pong');
-  }
-});
 
 client.on('message', (message) => {
   if(message.author.bot) return;
@@ -43,6 +36,15 @@ client.on('message', (message) => {
   if(message.content == 'ping') {
     return message.reply('아직설정안해둠 ㅋㅋ');
   }
+
+client.on('message', (message) => {
+    if(message.author.bot) return;
+  
+    if(message.content == '안뇽') {
+      return message.reply('pong');
+    }
+  });
+  
 
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
