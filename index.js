@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
-const welcomeChannelName = "안녕하세요";
-const byeChannelName = "안녕히가세요";
+const welcomeChannelName = "입장";
+const byeChannelName = "퇴장";
 const welcomeChannelComment = "어서오세요.";
 const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '대충 사뇨 행동.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '대충 사뇨 행동' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.content == 'ping') {
     return message.reply('아직설정안해둠 ㅋㅋ');
   }
-
+  
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
     let embed = new Discord.RichEmbed()
@@ -60,8 +60,6 @@ client.on('message', (message) => {
       {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움(오류남) 고치는중'},
-      {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
-      {name: '!초대코드 2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기(한 곳 밖에없지만 ㅋㅋ)'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
@@ -107,7 +105,7 @@ client.on('message', (message) => {
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지2'.length);
       let embed = new Discord.RichEmbed()
-        .setAuthor('공지 of 콜라곰 BOT')
+        .setAuthor('사뇨가 말해주는 공지!')
         .setColor('#186de6')
         .setFooter(`샤뇨봇V2!`)
         .setTimestamp()
@@ -149,7 +147,7 @@ client.on('message', (message) => {
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
       message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
-    } else if(!isNum) { // c @나긋해 3
+    } else if(!isNum) { // c @무잔 3
       if(message.content.split('<@').length == 2) {
         if(isNaN(message.content.split(' ')[2])) return;
 
@@ -176,6 +174,7 @@ client.on('message', (message) => {
     }
   }
 });
+
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -204,6 +203,7 @@ async function AutoMsgDelete(message, str, delay = 3000) {
     msg.delete();
   }, delay);
 }
+
 
 
 client.login(token);
