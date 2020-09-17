@@ -37,7 +37,7 @@ client.on('message', (message) => {
       message.channel.send(client.ping +' ms')
   } else if (message.content == 'ping3') {
       message.reply('pong3')
-  }else if (message.content == 'ping2') {
+  } else if (message.content == 'ping2') {
     message.reply('pong2')
   }
 
@@ -64,7 +64,7 @@ client.on('message', (message) => {
       {name: 'embed', desc: '봇만든사람 설명!'},
       {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
-      {name: '!청소', desc: '텍스트 지움(오류남) 고치는중'},
+      {name: '!청소', desc: '채팅을 1~100개 사이를 지움'},
       {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'}
     ];
     let commandStr = '';
@@ -150,8 +150,8 @@ client.on('message', (message) => {
     var clearLine = message.content.slice('!청소 '.length);
     var isNum = !isNaN(clearLine)
 
-    if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+    if(isNum && (clearLine <= 0 || 1000 < clearLine)) {
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요.띄어쓰기 하면 안대요!")
       return;
     } else if(!isNum) { // c @무잔 3
       if(message.content.split('<@').length == 2) {
