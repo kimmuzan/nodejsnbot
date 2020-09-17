@@ -8,7 +8,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '대충 사뇨 행동' }, status: 'online' })
+  client.user.setPresence({ game: { name: '명령어 수정중(지금쓰면 오류날수도있)' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -34,7 +34,11 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == 'ping') {
-    return message.reply('아직설정안해둠 ㅋㅋ');
+      message.channel.send(client.ping +' ms')
+  } else if (message.content == 'ping3') {
+      message.reply('pong3')
+  }else if (message.content == 'ping2') {
+    message.reply('pong2')
   }
 
   if(message.content == 'embed') {
