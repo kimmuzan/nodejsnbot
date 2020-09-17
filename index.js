@@ -34,7 +34,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '사뇨야 핑') {
-      message.channel.send(client.ping +' ms')
+      message.channel.send(`<@${message.author.id}> ` + "님의 핑운 " + client.ping +' ms' + "에요!")
   } else if (message.content == '사뇨야 안뇽') {
       message.reply('어..어?안영!나눈 사뇨양!))우웁..오타')
   } else if (message.content == 'ping2') {
