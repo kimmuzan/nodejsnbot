@@ -8,7 +8,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '명령어 수정중 거의 끝단계' }, status: 'online' })
+  client.user.setPresence({ game: { name: '명령어 수정중 진짜 거의 끝단계' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -33,7 +33,7 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == 'ping') {
+  if(message.content == '사뇨야 핑') {
       message.channel.send(client.ping +' ms')
   } else if (message.content == '사뇨야 안뇽') {
       message.reply('어..어?안영!나눈 사뇨양!))우웁..오타')
@@ -60,7 +60,7 @@ client.on('message', (message) => {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!help', desc: '도움말'},
-      {name: 'ping', desc: '현재 핑 상태'},
+      {name: '사뇨야 핑', desc: '사뇨가 핑을 알려줘요'},
       {name: 'embed', desc: '봇만든사람 설명!'},
       {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
