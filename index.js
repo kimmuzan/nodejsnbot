@@ -35,8 +35,8 @@ client.on('message', (message) => {
 
   if(message.content == 'ping') {
       message.channel.send(client.ping +' ms')
-  } else if (message.content == 'ping3') {
-      message.reply('pong3')
+  } else if (message.content == '사뇨야 안뇽') {
+      message.reply('어..어?안영!나눈 사뇨양!))우웁..오타')
   } else if (message.content == 'ping2') {
     message.reply('pong2')
   }
@@ -65,7 +65,7 @@ client.on('message', (message) => {
       {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
       {name: '!청소', desc: '채팅을 1~100개 사이를 지움'},
-      {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'}
+      {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
