@@ -37,9 +37,7 @@ client.on('message', (message) => {
       message.channel.send(`<@${message.author.id}> ` + "님의 핑운 " + client.ping +' ms' + "에요!")
   } else if (message.content == '사뇨야 안뇽') {
       message.reply('어..어?안영!나눈 사뇨양!))우웁..오타')
-  } else if (message.content == '사뇨야 시간') {
-    message.channel.send(`<@${message.author.id}>` + "님! 지금의 시간은" + setTimestamp() + "에용!")
-  } 
+  }
 
   if(message.content == '사뇨야 제작자') {
     let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
