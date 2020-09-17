@@ -8,7 +8,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '대충 사뇨 행동' }, status: 'online' })
+  client.user.setPresence({ game: { name: '사뇨비V2의 도움말운 .사뇨야 도움말. 이에요!'}, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
