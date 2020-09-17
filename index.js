@@ -8,7 +8,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '명령어 수정중(지금쓰면 오류날수도있)' }, status: 'online' })
+  client.user.setPresence({ game: { name: '명령어 수정중 거의 끝단계' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -81,31 +81,6 @@ client.on('message', (message) => {
     embed.addField('Commands: ', commandStr);
 
     message.channel.send(embed)
-  } else if(message.content == '!초대코드2') {
-    client.guilds.array().forEach(x => {
-      x.channels.find(x => x.type == 'text').createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
-        .then(invite => {
-          message.channel.send(invite.url)
-        })
-        .catch((err) => {
-          if(err.code == 50013) {
-            message.channel.send('**'+x.channels.find(x => x.type == 'text').guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-          }
-        })
-    });
-  } else if(message.content == '!초대코드') {
-    if(message.channel.type == 'dm') {
-      return message.reply('개인적으로는 사용이 불가합니다.');
-    }
-    message.guild.channels.get(message.channel.id).createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
-      .then(invite => {
-        message.channel.send(invite.url)
-      })
-      .catch((err) => {
-        if(err.code == 50013) {
-          message.channel.send('**'+message.guild.channels.get(message.channel.id).guild.name+'** 채널 권한이 없어 초대코드 발행 실패')
-        }
-      })
   } else if(message.content.startsWith('!전체공지2')) {
     if(checkPermission(message)) return
     if(message.member != null) { // 채널에서 공지 쓸 때
