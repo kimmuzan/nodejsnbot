@@ -1,14 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.argv.length == 2 ? process.env.token : "";
-const welcomeChannelName = "입장";
-const byeChannelName = "퇴장";
+const token = process.argv.length == 2 ? process.env.token : '';
+const welcomeChannelName = "안녕하세요";
+const byeChannelName = "안녕히가세요";
 const welcomeChannelComment = "어서오세요.";
 const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '대충 사뇨 행동' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -18,7 +17,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "3층 주민들"));
+  member.addRole(guild.roles.find(role => role.name == "게스트"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -29,49 +28,44 @@ client.on("guildMemberRemove", (member) => {
   byeChannel.send(`<@${deleteUser.id}> ${byeChannelComment}\n`);
 });
 
-
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == '사뇨야 핑') {
-      message.channel.send(client.ping +' ms')
-  } else if (message.content == '사뇨야 안뇽') {
-      message.reply('어..어?안영!나눈 사뇨양!))우웁..오타')
-  } else if (message.content == 'ping2') {
-    message.reply('pong2')
-  } 
+  if(message.content == 'ping') {
+    return message.reply('pong');
+  }
 
-  if(message.content == '사뇨야 제작자') {
-    let img = 'https://cdn.discordapp.com/attachments/731508995541565494/755638012376907867/image-2020211456.png';
+  if(message.content == 'embed') {
+    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     let embed = new Discord.RichEmbed()
-      .setTitle('무잔의 설명')
-      .setAuthor('무잔')
+      .setTitle('타이틀')
+      .setURL('http://www.naver.com')
+      .setAuthor('나긋해', img, 'http://www.naver.com')
       .setThumbnail(img)
       .addBlankField()
-      .addField('무잔의 나이는?', '2020년기준 15!')
-      .addField('사는곳!', '비밀!', true)
-      .addField('더 질문하고싶으면!', '무잔#4659로 갠디!', true)
+      .addField('Inline field title', 'Some value here')
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
       .addBlankField()
       .setTimestamp()
-      .setFooter('무잔이 만듬', img)
+      .setFooter('나긋해가 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == '!help') {
+  } else if(message.content == 'embed2') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '!help', desc: '도움말'},
-      {name: '사뇨야 핑', desc: '사뇨가 핑을 알려줘요'},
-      {name: '사뇨야 제작자', desc: '사뇨봇을 만든사람을 알려줘요'},
-      {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
-      {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
-      {name: '!청소', desc: '채팅을 1~100개 사이를 지움'},
-      {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'},
+      {name: 'ping', desc: '현재 핑 상태'},
+      {name: 'embed', desc: 'embed 예제1'},
+      {name: 'embed2', desc: 'embed 예제2 (help)'},
+      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('대충 명령어가 이씀!', helpImg)
+      .setAuthor('Help of 콜라곰 BOT', helpImg)
       .setColor('#186de6')
-      .setFooter(`사뇨봇V2!`)
+      .setFooter(`콜라곰 BOT ❤️`)
       .setTimestamp()
     
     commandList.forEach(x => {
@@ -81,28 +75,9 @@ client.on('message', (message) => {
     embed.addField('Commands: ', commandStr);
 
     message.channel.send(embed)
-  } else if(message.content.startsWith('!전체공지2')) {
-    if(checkPermission(message)) return
-    if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지2'.length);
-      let embed = new Discord.RichEmbed()
-        .setAuthor('사뇨가 말해주는 공지!')
-        .setColor('#186de6')
-        .setFooter(`샤뇨봇V2!`)
-        .setTimestamp()
-  
-      embed.addField('공지: ', contents);
-  
-      message.member.guild.members.array().forEach(x => {
-        if(x.user.bot) return;
-        x.user.send(embed)
-      });
-  
-      return message.reply('사뇨가 완벽하게 공지를 전송해떠요!');
-    } else {
-      return message.reply('채널에서 실행해주세용..');
-    }
-  } else if(message.content.startsWith('!전체공지')) {
+  }
+
+  if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지'.length);
@@ -111,16 +86,14 @@ client.on('message', (message) => {
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('사뇨가 완벽하게 공지를 전송해떠요!');
+      return message.reply('공지를 전송했습니다.');
     } else {
-      return message.reply('채널에서 실행해주세용..');
+      return message.reply('채널에서 실행해주세요.');
     }
-  } else if(message.content.startsWith('!청소')) {
-    if(message.channel.type == 'dm') {
-      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
-    }
-    
-    if(message.channel.type != 'dm' && checkPermission(message)) return
+  }
+
+  if(message.content.startsWith('!청소')) {
+    if(checkPermission(message)) return
 
     var clearLine = message.content.slice('!청소 '.length);
     var isNum = !isNaN(clearLine)
@@ -128,7 +101,7 @@ client.on('message', (message) => {
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
       message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
-    } else if(!isNum) { // c @무잔 3
+    } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
         if(isNaN(message.content.split(' ')[2])) return;
 
@@ -150,7 +123,7 @@ client.on('message', (message) => {
     } else {
       message.channel.bulkDelete(parseInt(clearLine)+1)
         .then(() => {
-          AutoMsgDelete(message, `<@${message.author.id}> ` + "사뇨가 " + parseInt(clearLine) + "개의 메시지를 완벽하게 삭제했숩니다! (이 메세지는 잠시 후에 사라집니다.)");
+          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)");
         })
         .catch(console.error)
     }
@@ -184,7 +157,6 @@ async function AutoMsgDelete(message, str, delay = 3000) {
     msg.delete();
   }, delay);
 }
-
 
 
 client.login(token);
