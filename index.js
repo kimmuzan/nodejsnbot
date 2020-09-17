@@ -56,15 +56,15 @@ client.on('message', (message) => {
       .setFooter('무잔이 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == '!help') {
+  } else if(message.content == '사뇨야 도움말') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '!help', desc: '도움말'},
+      {name: '사뇨야 도움말', desc: '사뇨가 도움말이 뭐뭐 있는지 알려줘용'},
       {name: '사뇨야 핑', desc: '사뇨가 핑을 알려줘요'},
       {name: '사뇨야 제작자', desc: '사뇨봇을 만든사람을 알려줘요'},
-      {name: '!전체공지', desc: 'Dm으로 전체 공지 보내기'},
-      {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내기'},
-      {name: '!청소', desc: '채팅을 1~100개 사이를 지움'},
+      {name: '!전체공지', desc: 'Dm으로 전체 공지 보내주어용!'},
+      {name: '!전체공지2', desc: 'Dm으로 전체 embed 형식으로 공지 보내끼!'},
+      {name: '사뇨야 청소', desc: '채팅을 1~100개 사이를 지워준대용!'},
       {name: '사뇨야 안뇽', desc: '사뇨가 인사해줘요!'},
     ];
     let commandStr = '';
@@ -128,14 +128,14 @@ client.on('message', (message) => {
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
-  } if(message.content.startsWith('!청소')) {
+  } if(message.content.startsWith('사뇨야 청소')) {
     if(checkPermission(message)) return
 
-    var clearLine = message.content.slice('!청소 '.length);
+    var clearLine = message.content.slice('사뇨야 청소 '.length);
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+      message.channel.send("1부터 100까지의 숫자만 입력해주세여! 아! 혹시...띄어쓰기 안하신거 아니죠..?")
       return;
     } else if(!isNum) { // c @무잔 3
       if(message.content.split('<@').length == 2) {
@@ -159,7 +159,7 @@ client.on('message', (message) => {
     } else {
       message.channel.bulkDelete(parseInt(clearLine)+1)
         .then(() => {
-          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)");
+          AutoMsgDelete(message, `<@${message.author.id}> ` + "사뇨가 " + parseInt(clearLine) + "개의 메시지를 삭제해떠요!. (이 메세지는 잠시 후에 사라집니다.)");
         })
         .catch(console.error)
     }
@@ -168,7 +168,7 @@ client.on('message', (message) => {
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
+    message.channel.send(`<@${message.author.id}> ` + "이 명령어눈 관리자만 쓸쑤 이떠요!.")
     return true;
   } else {
     return false;
